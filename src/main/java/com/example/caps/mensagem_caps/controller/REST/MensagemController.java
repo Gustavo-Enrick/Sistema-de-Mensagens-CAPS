@@ -1,4 +1,4 @@
-package com.example.caps.mensagem_caps.controller.api;
+package com.example.caps.mensagem_caps.controller.REST;
 
 import com.example.caps.mensagem_caps.DTO.MensagemDTO;
 import com.example.caps.mensagem_caps.model.MensagemModel;
