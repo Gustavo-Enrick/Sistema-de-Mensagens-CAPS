@@ -25,7 +25,7 @@
     </div>
 </nav>
 <div class="container-fluid">
-    <a href="" class="btn btn-primary mt-1 ms-1">Novo</a>
+    <a href="create" class="btn btn-primary mt-1 ms-1">Novo</a>
     <table class="table">
         <thead>
         <tr>
@@ -38,8 +38,8 @@
             <th th:text="${mensagem.id}" scope="row" class="text-center"></th>
             <td th:text="${mensagem.nameMensagem}" class="text-center"></td>
             <td style="white-space:nowrap">
-                <a class="btn btn-primary btn-sm" th:href="@{adm/edit}(id=${mensagem.id})">Editar</a>
-                <a class="btn btn-danger btn-sm" th:href="@{#}(id=${mensagem.id})">Deletar</a>
+                <a class="btn btn-primary btn-sm" th:href="@{edit(id=${mensagem.id})}">Editar</a>
+                <a class="btn btn-danger btn-sm" th:href="@{destroy(id=${mensagem.id})}">Deletar</a>
             </td>
         </tr>
         </tbody>
@@ -52,5 +52,4 @@
         integrity="sha384-WXgI4+QWJ5L75lHk6MLwAaT+1fB5iA3K4u8gV9Z5Mfsy5/rMZ/yyq5sGoHAI3n03"
         crossorigin="anonymous"></script>
 </body>
--->
 </html>
