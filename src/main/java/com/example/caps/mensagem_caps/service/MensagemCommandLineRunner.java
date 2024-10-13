@@ -17,7 +17,7 @@ public class MensagemCommandLineRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        mensagemRepository.save(new MensagemModel(new MensagemDTO("teste1", "teste teste1")));
+        mensagemRepository.save(new MensagemModel(new MensagemDTO("Mês de Outubro", "Falta do mês")));
         mensagemRepository.save(new MensagemModel(new MensagemDTO("teste2", "teste teste2")));
         mensagemRepository.save(new MensagemModel(new MensagemDTO("teste3", "teste teste3")));
         mensagemRepository.save(new MensagemModel(new MensagemDTO("teste4", "teste teste4")));
