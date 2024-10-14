@@ -19,7 +19,22 @@
     </div>
 </nav>
 <div class="container">
-    <p>Create</p>
+    <div class="row">
+        <div class="col-md-8 mx-auto rounded border p-4 m-4">
+            <form action="/mensagens/create" method="post"  th:object="${mensagemDTO}">
+                <div class="form-group">
+                    <label for="nameMensagem">Nome:</label>
+                    <input type="text" id="nameMensagem" th:field="${mensagemDTO.nameMensagem}" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="descricaoMensagem">Descrição:</label>
+                    <textarea id="descricaoMensagem" th:field="${mensagemDTO.descricaoMensagem}" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+
+        </div>
+    </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz4fnFO9gybKiIz0tN10f4OVXajR1SOJ6cF60q0fPST7S0TOl3D02nEUnV"

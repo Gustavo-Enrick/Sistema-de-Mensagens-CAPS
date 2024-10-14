@@ -30,7 +30,7 @@ public class MensagemControlerHtml {
     @GetMapping("/create")
     public String createMensagem(Model model) {
         MensagemDTO mensagemDTO = new MensagemDTO("","");
-        model.addAttribute("mensagem",mensagemDTO);
+        model.addAttribute("mensagemDTO",mensagemDTO);
         return "pacoteTv/createMensagem";
     }
 
