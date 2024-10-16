@@ -31,7 +31,7 @@ public class MensagemModel implements Serializable {
 
     @Setter
     @Getter
-    @Column(name = "ds_mensagem")
+    @Column(name = "ds_mensagem",length = 500)
     private String descricaoMensagem;
 
     public MensagemModel(MensagemDTO mensagemDTO){

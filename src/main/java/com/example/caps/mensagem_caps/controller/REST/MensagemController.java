@@ -33,14 +33,16 @@ public class MensagemController {
         return HttpStatus.CREATED;
     }
 
-    @PutMapping("/edit/{id}")
-    public HttpStatus updateMensagem(@PathVariable BigInteger id, @RequestBody MensagemDTO mensagemDTO){
+    @PostMapping("/edit/{id}")
+    public HttpStatus updateMensagem(@PathVariable BigInteger id, @ModelAttribute MensagemDTO mensagemDTO, HttpServletResponse httpServletResponse) throws IOException {
         mensagemService.updateMensagem(id,mensagemDTO);
+        httpServletResponse.sendRedirect("/adm/show");
         return HttpStatus.CREATED;
     }
 
-    @DeleteMapping("/destroy/{id}")
-    public HttpStatus deleteMensagem(@PathVariable BigInteger id){
+    @PostMapping("/destroy/{id}")
+    public HttpStatus deleteMensagem(@PathVariable BigInteger id, HttpServletResponse httpServletResponse) throws IOException {
+        httpServletResponse.sendRedirect("/adm/show");
         return mensagemService.deleteMensagem(id);
     }
 }
