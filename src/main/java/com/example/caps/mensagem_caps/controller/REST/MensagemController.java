@@ -14,6 +14,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/mensagens")
 public class MensagemController {

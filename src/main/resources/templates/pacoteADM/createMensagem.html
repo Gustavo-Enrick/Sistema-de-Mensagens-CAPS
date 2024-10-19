@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,22 +8,26 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Mensagens</title>
+    <style>
+        .custom-font-size {
+            font-size: 1.50rem;
+        }
+        .navbar {
+            border-bottom: 2px solid #82787875;
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid d-flex justify-content-between align-items-center">
-        <img src="../../static/img/img.png" class="img-fluid" alt="Logo-prefeitura-itanhaem" width="20%">
-        <span class="navbar-brand mb-0 h1 custom-font-size">Caps Rodolpho Moreno</span>
+        <img th:src="@{/img/prefeituraLogo.png}" alt="Logo Prefeitura" class="img-fluid" width="15%">
+        <span class="navbar-brand mb-0 h1 custom-font-size text-center">Caps II <br> Rodolpho Moreno</span>
     </div>
 </nav>
-<div class="container">
+<div class="container custom-font-size">
     <div class="row">
         <div class="col-md-8 mx-auto rounded border p-4 m-4">
-            <form th:action="@{/mensagens/edit/{id}(id=${mensagem.id})}" method="post" th:object="${mensagemDTO}">
-            <div class="form-group">
-                    <label for="id">Id:</label>
-                    <input readonly type="text" class="form-control-plaintext" id="id" th:value="${mensagem.id}" />
-                </div>
+            <form th:action="@{/mensagens/create}" method="post" th:object="${mensagemDTO}">
                 <div class="form-group">
                     <label for="nameMensagem">Nome:</label>
                     <input type="text" class="form-control" id="nameMensagem" th:field="*{nameMensagem}" required />
@@ -31,7 +36,8 @@
                     <label for="descricaoMensagem">Descrição:</label>
                     <textarea class="form-control" id="descricaoMensagem" th:field="*{descricaoMensagem}" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Atualizar</button>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+                <a class="btn btn-warning" href="showMensagem.html" th:href="@{/adm/show}">Voltar</a>
             </form>
         </div>
     </div>
@@ -39,4 +45,8 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz4fnFO9gybKiIz0tN10f4OVXajR1SOJ6cF60q0fPST7S0TOl3D02nEUnV"
         crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-WXgI4+QWJ5L75lHk6MLwAaT+1fB5iA3K4u8gV9Z5Mfsy5/rMZ/yyq5sGoHAI3n03"
+        crossorigin="anonymous"></script>
+</body>
+</html>

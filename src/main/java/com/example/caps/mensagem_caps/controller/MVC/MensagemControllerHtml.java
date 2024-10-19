@@ -4,6 +4,10 @@ import com.example.caps.mensagem_caps.DTO.MensagemDTO;
 import com.example.caps.mensagem_caps.model.MensagemModel;
 import com.example.caps.mensagem_caps.repository.MensagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,14 +28,14 @@ public class MensagemControllerHtml {
     public String showListaMensagem(Model model) {
         List<MensagemModel> modelList = mensagemRepository.findAll();
         model.addAttribute("mensagens", modelList);
-        return "pacoteTv/tv";
+        return "pacoteADM/showMensagem";
     }
 
     @GetMapping("/create")
     public String createMensagem(Model model) {
         MensagemDTO mensagemDTO = new MensagemDTO("", "");
         model.addAttribute("mensagemDTO", mensagemDTO);
-        return "pacoteTv/createMensagem";
+        return "pacoteADM/createMensagem";
     }
 
     @GetMapping("/edit/{id}")
@@ -44,7 +48,7 @@ public class MensagemControllerHtml {
         } catch (Exception ignored) {
             return "redirect:/show";
         }
-        return "pacoteTv/editMensagem";
+        return "pacoteADM/editMensagem";
     }
 
     @GetMapping("/destroy/{id}")
@@ -57,6 +61,15 @@ public class MensagemControllerHtml {
         } catch (Exception ignored) {
             return "redirect:/show";
         }
-        return "pacoteTv/destroyMensagem";
+        return "pacoteADM/destroyMensagem";
     }
+
+    @GetMapping("/image")
+    public ResponseEntity<Resource> getImage() {
+        Resource resource = new ClassPathResource("static/img/prefeituraLogo.png");
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_PNG)
+                .body(resource);
+    }
+
 }
