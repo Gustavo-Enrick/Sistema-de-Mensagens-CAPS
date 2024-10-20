@@ -64,6 +64,7 @@ public class MensagemControllerHtml {
         return "pacoteADM/destroyMensagem";
     }
 
+    //Retorna a logo da prefeitura
     @GetMapping("/image")
     public ResponseEntity<Resource> getImage() {
         Resource resource = new ClassPathResource("static/img/prefeituraLogo.png");

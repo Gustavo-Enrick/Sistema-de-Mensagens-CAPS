@@ -15,7 +15,6 @@ import java.util.Optional;
 public class MensagemService {
     @Autowired
     private MensagemRepository mensagemRepository;
-    //Testar aplicação
 
     public HttpStatus createMensagem(MensagemDTO mensagemDTO) {
         boolean exists = mensagemRepository.findAll().stream()
