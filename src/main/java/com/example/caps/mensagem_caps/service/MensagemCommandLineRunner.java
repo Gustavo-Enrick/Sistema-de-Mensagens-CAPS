@@ -5,12 +5,10 @@ import com.example.caps.mensagem_caps.model.MensagemModel;
 import com.example.caps.mensagem_caps.repository.MensagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 @Component
 public class MensagemCommandLineRunner implements CommandLineRunner {
@@ -19,7 +17,8 @@ public class MensagemCommandLineRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(new ClassPathResource("bdMensagensPrincipais/mensagens principais").getInputStream()))) {
+        String filePath = "";
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8))) {
             String linha;
             while ((linha = br.readLine()) != null) {
                 String[] partes = linha.split("\\|");

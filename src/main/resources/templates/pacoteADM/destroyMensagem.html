@@ -34,14 +34,14 @@
                 </div>
                 <div class="form-group">
                     <label for="nameMensagem">Nome:</label>
-                    <input type="text" class="form-control" id="nameMensagem" th:field="*{nameMensagem}" required />
+                    <input readonly type="text" class="form-control" id="nameMensagem" th:field="*{nameMensagem}" required />
                 </div>
                 <div class="form-group">
                     <label for="descricaoMensagem">Descrição:</label>
-                    <textarea class="form-control" id="descricaoMensagem" th:field="*{descricaoMensagem}" required></textarea>
+                    <textarea readonly class="form-control" id="descricaoMensagem" th:field="*{descricaoMensagem}" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" onclick="return confirm('Tem certeza ?')">Excluir</button>
-                <a class="btn btn-warning" href="showMensagem.html" th:href="@{/adm/show}">Voltar</a>
+                <button type="submit" class="btn btn-outline-danger mt-3" onclick="return confirm('Tem certeza ?')">Excluir</button>
+                <a class="btn btn-outline-warning mt-3" href="showMensagem.html" th:href="@{/adm/show}">Voltar</a>
             </form>
         </div>
     </div>

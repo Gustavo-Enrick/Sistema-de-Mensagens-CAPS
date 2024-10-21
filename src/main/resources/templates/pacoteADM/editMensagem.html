@@ -15,6 +15,9 @@
         .navbar {
             border-bottom: 2px solid #82787875;
         }
+        form-color{
+            background-color: rgba(228, 220, 220, 0.219);
+        }
     </style>
 </head>
 <body>
@@ -26,7 +29,7 @@
 </nav>
 <div class="container custom-font-size">
     <div class="row">
-        <div class="col-md-8 mx-auto rounded border p-4 m-4">
+        <div class="col-md-8 mx-auto rounded border form-color p-4 m-4">
             <form th:action="@{/mensagens/edit/{id}(id=${mensagem.id})}" method="post" th:object="${mensagemDTO}">
             <div class="form-group">
                     <label for="id">Id:</label>
@@ -40,8 +43,8 @@
                     <label for="descricaoMensagem">Descrição:</label>
                     <textarea class="form-control" id="descricaoMensagem" th:field="*{descricaoMensagem}" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Atualizar</button>
-                <a class="btn btn-warning" href="showMensagem.html" th:href="@{/adm/show}">Voltar</a>
+                <button type="submit" class="btn btn-outline-warning mt-3">Atualizar</button>
+                <a class="btn btn-outline-primary mt-3" href="showMensagem.html" th:href="@{/adm/show}">Voltar</a>
             </form>
         </div>
     </div>
