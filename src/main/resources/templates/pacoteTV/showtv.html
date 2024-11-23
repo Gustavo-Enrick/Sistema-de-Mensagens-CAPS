@@ -1,87 +1,90 @@
 <!doctype html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.thymeleaf.org ">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <meta name="author" content="Gustavo Enrick Lopes de Sousa">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mensagens</title>
 
     <style>
-        body{
-            background-color: rgba(231, 223, 223, 0.289);
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
         #mensagem {
+            margin-top: 100px;
+            font-size: 3.5rem;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            font-size: 3.50rem;
-
         }
-
-        .custom-font-size {
-            font-size: 1.75rem;
-        }
-
-
     </style>
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid d-flex justify-content-between align-items-center">
-        <img th:src="@{/img/prefeituraLogo.png}" alt="Logo Prefeitura" class="img-fluid" width="15%">
-        <span class="navbar-brand mb-0 h1 custom-font-size text-center">Caps II <br> Rodolpho Moreno</span>
-    </div>
-</nav>
-
-<div class="container-fluid mensagem mt-4">
-    <div id="mensagem"></div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<div id="mensagem">Carregando mensagens...</div>
 
 <script>
-    let mensagens = [];
-    let mensagemIndex = 0;
-    let intervalId;
-    const url = "http://192.168.100.100:2250/mensagens"; //atualizar para o ip de lá
+    var mensagens = [];
+ var mensagemIndex = 0;
+ var intervalId;
+ var url = "https://sistema-de-mensagens-caps.onrender.com//mensagens;
+ function exibirMensagem() {
+     var mensagemDiv = document.getElementById('mensagem');
 
-    const exibirMensagem = () => {
-        const mensagemDiv = document.getElementById('mensagem');
+     if (mensagemIndex < mensagens.length) {
+         mensagemDiv.textContent = mensagens[mensagemIndex].descricaoMensagem || "Mensagem não disponível";
+         mensagemIndex++;
+     } else {
+         clearInterval(intervalId);
+         setTimeout(atualizarMensagens, 10000);
+     }
+ }
 
-        if (mensagemIndex < mensagens.length) {
-            let mensagem = mensagens[mensagemIndex].descricaoMensagem;
-            mensagemDiv.textContent = mensagem;
-            mensagemIndex++;
-        } else {
-            clearInterval(intervalId);
-            atualizarMensagens();
-        }
-    };
+ function atualizarMensagens() {
+     var xhr = new XMLHttpRequest();
+     xhr.open("GET", url, true);
 
-    const atualizarMensagens = () => {
-        fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                mensagens = data;
-                mensagemIndex = 0;
-                exibirMensagem();
-                intervalId = setInterval(exibirMensagem, 10000);
-            })
-            .catch(error => {
-                console.error('Houve um problema com o fetch:', error);
-            });
-    };
-    window.onload = atualizarMensagens;
+     xhr.onreadystatechange = function () {
+         if (xhr.readyState === 4) {
+             if (xhr.status === 200) {
+                 try {
+                     mensagens = JSON.parse(xhr.responseText) || [];
+                     mensagemIndex = 0;
+
+                     if (mensagens.length > 0) {
+                         exibirMensagem();
+                         intervalId = setInterval(exibirMensagem, 10000);
+                     } else {
+                         document.getElementById('mensagem').textContent = "Nenhuma mensagem encontrada.";
+                     }
+                 } catch (e) {
+                     document.getElementById('mensagem').textContent = "Erro ao processar as mensagens.";
+                 }
+             } else {
+                 document.getElementById('mensagem').textContent = "Erro ao carregar mensagens.";
+             }
+         }
+     };
+
+     xhr.onerror = function () {
+         document.getElementById('mensagem').textContent = "Erro de rede ao carregar mensagens.";
+     };
+
+     xhr.send();
+ }
+
+ window.onload = atualizarMensagens;
 </script>
 </body>
 </html>
