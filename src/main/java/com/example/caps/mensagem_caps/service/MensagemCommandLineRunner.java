@@ -17,7 +17,7 @@ public class MensagemCommandLineRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        String filePath = "";
+        String filePath = "bdMensagensPrincipais/mensagens_principais";
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8))) {
             String linha;
             while ((linha = br.readLine()) != null) {
