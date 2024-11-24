@@ -38,7 +38,7 @@
     var mensagens = [];
  var mensagemIndex = 0;
  var intervalId;
- var url = "https://sistema-de-mensagens-caps.onrender.com//mensagens";
+ var url = window.location.protocol + "//" + window.location.host + "/mensagens";
  function exibirMensagem() {
      var mensagemDiv = document.getElementById('mensagem');
 
@@ -53,7 +53,7 @@
 
  function atualizarMensagens() {
      var xhr = new XMLHttpRequest();
-     xhr.open("GET","https://sistema-de-mensagens-caps.onrender.com//mensagens", true);
+     xhr.open("GET",url, true);
 
      xhr.onreadystatechange = function () {
          if (xhr.readyState === 4) {
