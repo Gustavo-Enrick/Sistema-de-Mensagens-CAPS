@@ -6,36 +6,32 @@ import com.example.caps.mensagem_caps.repository.MensagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 
 @Component
 public class MensagemCommandLineRunner implements CommandLineRunner {
+
     @Autowired
     private MensagemRepository mensagemRepository;
 
     @Override
+    @Transactional
     public void run(String... args) {
-        String filePath = "bdMensagensPrincipais/mensagens_principais";
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8))) {
-            String linha;
-            while ((linha = br.readLine()) != null) {
-                String[] partes = linha.split("\\|");
-                if (partes.length == 2) {
-                    String titulo = partes[0].trim();
-                    String conteudo = partes[1].trim();
+        HashMap<String, String> dadosMap = new HashMap<>();
+        dadosMap.put("Plantão", "Plantão acontece todas as quartas e sextas. Nas quartas as senhas são distribuídas às 12:00 e o atendimento começa às 13:00. Nas sextas as senhas são distribuídas às 7:00 e o atendimento começa às 8:00. São 10 (DEZ) SENHAS POR PLANTÃO!");
+        dadosMap.put("Acolhimento", "Acolhimento acontece todos os dias. Segunda e Terça as senhas são distribuídas às 12:00 e o atendimento começa às 13:00. Quarta, Quinta e Sexta as senhas são distribuídas às 7:00 e o atendimento começa às 8:00. São 8 (OITO) SENHAS POR ACOLHIMENTO!");
+        dadosMap.put("Silêncio", "Mantenha o silêncio no local");
 
-                    if (!titulo.isEmpty() && !conteudo.isEmpty()) {
-                        mensagemRepository.save(new MensagemModel(new MensagemDTO(titulo, conteudo)));
-                    }
-                } else {
-                    System.err.println("Formato inválido na linha: " + linha);
-                }
+        for (String nome : dadosMap.keySet()) {
+            try {
+                mensagemRepository.save(new MensagemModel(new MensagemDTO(nome, dadosMap.get(nome))));
+                System.out.println("Mensagem inserida com sucesso");
+            } catch (Exception e) {
+                System.err.println("Erro ao salvar mensagem: " + e.getMessage());
             }
-            System.out.println("Mensagens inseridas com sucesso!");
-        } catch (IOException e) {
-            System.err.println("Erro ao ler o arquivo: " + e.getMessage());
+
         }
     }
 }

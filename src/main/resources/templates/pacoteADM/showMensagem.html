@@ -39,7 +39,7 @@
             <th th:text="${mensagem.id}" scope="row" class="text-center"></th>
             <td th:text="${mensagem.nameMensagem}" class="text-center"></td>
             <td style="white-space:nowrap">
-                <a class="btn btn-primary btn-sm" href="editMensagem.html" th:href="@{edit/{id}(id=${mensagem.id})}">Editar</a>
+                <a class="btn btn-warning btn-sm" href="editMensagem.html" th:href="@{edit/{id}(id=${mensagem.id})}">Editar</a>
                 <a class="btn btn-danger btn-sm" href="destroyMensagem.html" th:href="@{destroy/{id}(id=${mensagem.id})}">Deletar</a>
             </td>
         </tr>
