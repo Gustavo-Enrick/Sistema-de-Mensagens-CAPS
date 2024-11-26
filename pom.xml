@@ -12,7 +12,7 @@
 	<groupId>com.example.caps</groupId>
 	<artifactId>mensagem-caps</artifactId>
 	<version>1.0</version>
-	<name>Sistema_de_mensagens_CAPS</name>
+	<name>Sistema-de-mensagens-CAPS</name>
 	<description>Aplicação para exibição de mensagens</description>
 
 	<properties>

@@ -1,90 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Mensagens</title>
-
-    <style>
-        body {
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        #mensagem {
-            margin-top: 100px;
-            font-size: 3.5rem;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-
 <body>
 <div id="mensagem">Carregando mensagens...</div>
-
-<script>
-    var mensagens = [];
- var mensagemIndex = 0;
- var intervalId;
- var url = window.location.protocol + "//" + window.location.host + "/mensagens";
- function exibirMensagem() {
-     var mensagemDiv = document.getElementById('mensagem');
-
-     if (mensagemIndex < mensagens.length) {
-         mensagemDiv.textContent = mensagens[mensagemIndex].descricaoMensagem || "Mensagem não disponível";
-         mensagemIndex++;
-     } else {
-         clearInterval(intervalId);
-         setTimeout(atualizarMensagens, 10000);
-     }
- }
-
- function atualizarMensagens() {
-     var xhr = new XMLHttpRequest();
-     xhr.open("GET",url, true);
-
-     xhr.onreadystatechange = function () {
-         if (xhr.readyState === 4) {
-             if (xhr.status === 200) {
-                 try {
-                     mensagens = JSON.parse(xhr.responseText) || [];
-                     mensagemIndex = 0;
-
-                     if (mensagens.length > 0) {
-                         exibirMensagem();
-                         intervalId = setInterval(exibirMensagem, 10000);
-                     } else {
-                         document.getElementById('mensagem').textContent = "Nenhuma mensagem encontrada.";
-                     }
-                 } catch (e) {
-                     document.getElementById('mensagem').textContent = "Erro ao processar as mensagens.";
-                 }
-             } else {
-                 document.getElementById('mensagem').textContent = "Erro ao carregar mensagens.";
-             }
-         }
-     };
-
-     xhr.onerror = function () {
-         document.getElementById('mensagem').textContent = "Erro de rede ao carregar mensagens.";
-     };
-
-     xhr.send();
- }
-
- window.onload = atualizarMensagens;
-</script>
+<script type="text/javascript" src="/js/tv.js"></script>
 </body>
 </html>
