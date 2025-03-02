@@ -28,6 +28,7 @@
     <div class="row">
         <div class="col-md-8 mx-auto rounded border p-4 m-4">
             <form th:action="@{/mensagens/destroy/{id}(id=${mensagem.id})}" method="post" th:object="${mensagemDTO}">
+                <input type="hidden" name="_method" value="delete">
                 <div class="form-group">
                     <label for="id">Id:</label>
                     <input readonly type="text" class="form-control-plaintext" id="id" th:value="${mensagem.id}" />

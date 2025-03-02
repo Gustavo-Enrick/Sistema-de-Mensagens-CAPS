@@ -20,9 +20,9 @@ public class MensagemCommandLineRunner implements CommandLineRunner {
     @Transactional
     public void run(String... args) {
         HashMap<String, String> dadosMap = new HashMap<>();
-        dadosMap.put("Plantão", "Plantão acontece todas as quartas e sextas. Nas quartas as senhas são distribuídas às 12:00 e o atendimento começa às 13:00. Nas sextas as senhas são distribuídas às 7:00 e o atendimento começa às 8:00. São 10 (DEZ) SENHAS POR PLANTÃO!");
-        dadosMap.put("Acolhimento", "Acolhimento acontece todos os dias. Segunda e Terça as senhas são distribuídas às 12:00 e o atendimento começa às 13:00. Quarta, Quinta e Sexta as senhas são distribuídas às 7:00 e o atendimento começa às 8:00. São 8 (OITO) SENHAS POR ACOLHIMENTO!");
-        dadosMap.put("Silêncio", "Mantenha o silêncio no local");
+        dadosMap.put("Plantão", "Plantão às quartas e sextas: senhas às 7h, atendimento às 8h. Limitado a 10 senhas por dia!");
+        dadosMap.put("Acolhimento", "Acolhimento: Segunda, Quarta,Quinta e Sexta. Senhas às 7h, atendimento às 8h; Terça: senhas às 12h, atendimento às 13h. Limite de 8 senhas por dia!");
+        dadosMap.put("Silêncio", "Mantenha o silêncio no local !");
 
         for (String nome : dadosMap.keySet()) {
             try {
