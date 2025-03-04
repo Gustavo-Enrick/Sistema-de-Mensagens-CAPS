@@ -3,6 +3,13 @@ let mensagemIndex = 0;
 let intervalId;
 const url = `${window.location.protocol}//${window.location.hostname}/mensagens`;
 
+const audio = new Audio("/audio/hospital-monitor-151929.mp3");
+
+const disableButton = () => {
+    const btn = document.getElementsByClassName("btn-primary")[0];
+    btn.remove();
+}
+
 const lerMensagem = (mensagem) => {
     const utterance = new SpeechSynthesisUtterance(mensagem); // cria leitor de tela
     utterance.lang = "pt-br";
@@ -22,10 +29,10 @@ const atualizarTela = (mensagem) => {
 
 const exibirMensagem = () => {
     const mensagemDiv = document.getElementById('mensagem');
-
     if (mensagemIndex < mensagens.length) {
         const mensagem = mensagens[mensagemIndex].descricaoMensagem;
         atualizarTela(mensagem); // Atualiza o tamanho da fonte com base no texto
+        audio.play();
         lerMensagem(mensagem);
         mensagemDiv.textContent = mensagem;
         mensagemIndex++;
