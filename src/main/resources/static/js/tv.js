@@ -5,6 +5,8 @@ const url = `${window.location.protocol}//${window.location.hostname}/mensagens`
 
 const audio = new Audio("/audio/hospital-monitor-151929.mp3");
 
+const
+
 const disableButton = () => {
     const btn = document.getElementsByClassName("btn-primary")[0];
     btn.remove();
@@ -43,7 +45,7 @@ const exibirMensagem = () => {
 };
 
 const atualizarMensagens = () => {
-    fetch("http://localhost:2250/mensagens")
+    fetch(url)
         .then(response => {
             if (!response.ok) {
                 setInterval(atualizarMensagens,5000); // fica chamando a mensagem até ela funcionar
@@ -61,8 +63,22 @@ const atualizarMensagens = () => {
         });
 };
 
+const esperarMeiaNoite = () => {
+    const agora = new Date();
+    const proximaMeiaNoite = new Date(agora);
+    proximaMeiaNoite.setHours(24, 0, 0, 0); // Define a próxima meia-noite
+
+    const tempoParaEspera = proximaMeiaNoite - agora; // Tempo em milissegundos até a próxima meia-noite
+    setTimeout(() => {
+        atualizarMensagens(); // Faz a primeira requisição às 00:00
+        setTimeout(() => {
+            atualizarMensagens(); // Faz uma nova requisição após 1min30s (90 segundos)
+        }, 90000); // 1min30s em milissegundos
+    }, tempoParaEspera);
+}
+
+esperarMeiaNoite();
+
 const habilitaFetch = () => {
         setTimeout(atualizarMensagens,5000);
 }
-
-//window.onload = atualizarMensagens; // Executa ao carregar a janela
