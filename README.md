@@ -9,7 +9,7 @@ O **Sistema de Mensagens** é uma aplicação desenvolvida para facilitar a cria
 - **Criação de Mensagens**: Permite que usuários criem novas mensagens.
 - **Edição de Mensagens**: Oferece a possibilidade de modificar mensagens existentes.
 - **Exclusão de Mensagens**: Usuários podem remover mensagens que não são mais necessárias.
-- **Visualização Intercalada**: Mensagens são exibidas de forma intercalada para pacientes e funcionários, facilitando a leitura.
+- **Visualização Intercalada**: Mensagens são exibidas de forma intercalada para pacientes e funcionários, facilitando comunicação entre unidade e pacientes.
 
 ## Ferramentas Utilizadas
 
@@ -18,12 +18,15 @@ O **Sistema de Mensagens** é uma aplicação desenvolvida para facilitar a cria
 - **Maven**: Gerenciador de pacotes que facilita a construção e gerenciamento de dependências do projeto.
 - **HTML, CSS, JavaScript**: Tecnologias para a criação de páginas personalizadas e interativas.
 - **Bootstrap**: Framework CSS para maior personalização e responsividade das interfaces.
-- **Launch4j**: Ferramenta para empacotar o arquivo `.jar` junto com a JRE, gerando um arquivo `.exe` para fácil distribuição.
+
+## Hopesdado no Render
 
 ## Criador
 
 **Gustavo Enrikc Lopes de Sousa**
 
 **Contato**: (13) 97409-4511 
+
+**Email**: gustavoenrick17@gmail.com
 
 Para mais informações ou sugestões, sinta-se à vontade para entrar em contato!
